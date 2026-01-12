@@ -2,7 +2,7 @@ export const LoadingSkeleton = () => {
   return (
     <div className="space-y-6 animate-pulse">
       {/* Current Weather Skeleton */}
-      <div className="glass-card rounded-3xl p-8">
+      <div className="glass-card-orange rounded-3xl p-8">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
           <div className="text-center lg:text-left space-y-3">
             <div className="h-10 w-40 shimmer rounded-lg" />
@@ -18,9 +18,9 @@ export const LoadingSkeleton = () => {
       </div>
 
       {/* Details Skeleton */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {Array(6).fill(0).map((_, i) => (
-          <div key={i} className="glass-card rounded-2xl p-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {Array(10).fill(0).map((_, i) => (
+          <div key={i} className="glass-card-orange rounded-2xl p-5">
             <div className="h-5 w-20 shimmer rounded mb-3" />
             <div className="h-8 w-16 shimmer rounded" />
           </div>
@@ -28,7 +28,7 @@ export const LoadingSkeleton = () => {
       </div>
 
       {/* Forecast Skeleton */}
-      <div className="glass-card rounded-3xl p-6">
+      <div className="glass-card-orange rounded-3xl p-6">
         <div className="h-6 w-40 shimmer rounded mb-6" />
         <div className="space-y-4">
           {Array(5).fill(0).map((_, i) => (

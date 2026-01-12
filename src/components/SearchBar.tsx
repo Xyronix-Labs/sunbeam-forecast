@@ -27,7 +27,7 @@ export const SearchBar = ({ onSearch, onGetLocation, loading }: SearchBarProps) 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search for a city..."
-            className="w-full pl-12 pr-4 py-4 rounded-2xl glass-card text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-300"
+            className="w-full pl-12 pr-4 py-4 rounded-2xl glass-card-orange text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-300"
             disabled={loading}
           />
         </div>
@@ -36,11 +36,11 @@ export const SearchBar = ({ onSearch, onGetLocation, loading }: SearchBarProps) 
           type="button"
           onClick={onGetLocation}
           disabled={loading}
-          className="p-4 rounded-2xl glass-card text-muted-foreground hover:text-primary hover:bg-muted/50 transition-all duration-300 disabled:opacity-50"
+          className="p-4 rounded-2xl glass-card-orange text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300 disabled:opacity-50"
           title="Use my location"
         >
           {loading ? (
-            <Loader2 className="w-5 h-5 animate-spin" />
+            <Loader2 className="w-5 h-5 animate-spin text-primary" />
           ) : (
             <MapPin className="w-5 h-5" />
           )}

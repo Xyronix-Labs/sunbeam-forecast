@@ -7,12 +7,12 @@ interface UnitToggleProps {
 
 export const UnitToggle = ({ unit, onToggle }: UnitToggleProps) => {
   return (
-    <div className="flex items-center glass-card rounded-full p-1">
+    <div className="flex items-center glass-card-orange rounded-full p-1">
       <button
         onClick={() => onToggle('celsius')}
         className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
           unit === 'celsius'
-            ? 'bg-primary text-primary-foreground'
+            ? 'bg-gradient-to-r from-primary to-accent text-primary-foreground'
             : 'text-muted-foreground hover:text-foreground'
         }`}
       >
@@ -22,7 +22,7 @@ export const UnitToggle = ({ unit, onToggle }: UnitToggleProps) => {
         onClick={() => onToggle('fahrenheit')}
         className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
           unit === 'fahrenheit'
-            ? 'bg-primary text-primary-foreground'
+            ? 'bg-gradient-to-r from-primary to-accent text-primary-foreground'
             : 'text-muted-foreground hover:text-foreground'
         }`}
       >
