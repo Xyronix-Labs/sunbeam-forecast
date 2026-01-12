@@ -2,10 +2,10 @@ import { Cloud, MapPin } from 'lucide-react';
 
 export const EmptyState = () => {
   return (
-    <div className="glass-card rounded-3xl p-12 text-center animate-fade-in">
+    <div className="glass-card-orange rounded-3xl p-12 text-center animate-fade-in orange-glow">
       <div className="flex justify-center mb-6">
         <div className="relative">
-          <Cloud className="w-24 h-24 text-muted-foreground animate-float" />
+          <Cloud className="w-24 h-24 text-primary/60 animate-float" />
           <MapPin className="w-8 h-8 text-primary absolute -bottom-1 -right-1" />
         </div>
       </div>

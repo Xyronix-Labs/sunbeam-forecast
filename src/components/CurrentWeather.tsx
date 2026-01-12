@@ -1,6 +1,7 @@
 import { WeatherData, TemperatureUnit } from '@/types/weather';
 import { WeatherIcon } from './WeatherIcon';
 import { format } from 'date-fns';
+import logo from '@/assets/logo.png';
 
 interface CurrentWeatherProps {
   weather: WeatherData;
@@ -17,6 +18,8 @@ const convertTemp = (temp: number, unit: TemperatureUnit): number => {
 export const CurrentWeather = ({ weather, unit }: CurrentWeatherProps) => {
   const temp = convertTemp(weather.main.temp, unit);
   const feelsLike = convertTemp(weather.main.feels_like, unit);
+  const tempMin = convertTemp(weather.main.temp_min, unit);
+  const tempMax = convertTemp(weather.main.temp_max, unit);
   const unitSymbol = unit === 'celsius' ? '°C' : '°F';
   
   const currentDate = new Date();
@@ -24,7 +27,7 @@ export const CurrentWeather = ({ weather, unit }: CurrentWeatherProps) => {
   const dateStr = format(currentDate, 'MMMM d, yyyy');
 
   return (
-    <div className="glass-card rounded-3xl p-8 weather-glow animate-fade-in">
+    <div className="glass-card-orange rounded-3xl p-8 weather-glow animate-fade-in orange-glow">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
         {/* Left: Location & Date */}
         <div className="text-center lg:text-left">
@@ -55,15 +58,18 @@ export const CurrentWeather = ({ weather, unit }: CurrentWeatherProps) => {
         {/* Right: Temperature */}
         <div className="text-center lg:text-right">
           <div className="flex items-start justify-center lg:justify-end">
-            <span className="text-7xl md:text-8xl font-light tracking-tight">
+            <span className="text-7xl md:text-8xl font-light tracking-tight gradient-text">
               {temp}
             </span>
-            <span className="text-3xl font-light text-muted-foreground mt-2">
+            <span className="text-3xl font-light text-primary mt-2">
               {unitSymbol}
             </span>
           </div>
           <p className="text-muted-foreground text-lg mt-2">
-            Feels like {feelsLike}{unitSymbol}
+            Feels like <span className="text-primary">{feelsLike}{unitSymbol}</span>
+          </p>
+          <p className="text-sm text-muted-foreground">
+            H: {tempMax}° L: {tempMin}°
           </p>
         </div>
       </div>

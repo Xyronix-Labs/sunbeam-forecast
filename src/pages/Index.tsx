@@ -5,12 +5,13 @@ import { CurrentWeather } from '@/components/CurrentWeather';
 import { WeatherDetails } from '@/components/WeatherDetails';
 import { HourlyForecast } from '@/components/HourlyForecast';
 import { DailyForecast } from '@/components/DailyForecast';
+import { AstronomicalInfo } from '@/components/AstronomicalInfo';
 import { UnitToggle } from '@/components/UnitToggle';
 import { LoadingSkeleton } from '@/components/LoadingSkeleton';
 import { EmptyState } from '@/components/EmptyState';
 import { ErrorMessage } from '@/components/ErrorMessage';
 import { TemperatureUnit } from '@/types/weather';
-import { Cloud } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const Index = () => {
   const { weather, forecast, loading, error, fetchWeather, fetchWeatherByCoords } = useWeather();
@@ -32,7 +33,6 @@ const Index = () => {
   };
 
   useEffect(() => {
-    // Try to get user location on mount
     handleGetLocation();
   }, []);
 
@@ -42,7 +42,7 @@ const Index = () => {
         {/* Header */}
         <header className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <Cloud className="w-10 h-10 text-primary" />
+            <img src={logo} alt="WeatherScope Logo" className="w-12 h-12 rounded-xl" />
             <h1 className="text-3xl font-bold gradient-text">WeatherScope</h1>
           </div>
           <UnitToggle unit={unit} onToggle={setUnit} />
@@ -76,8 +76,11 @@ const Index = () => {
             {/* Hourly Forecast */}
             <HourlyForecast forecast={forecast} unit={unit} />
 
-            {/* 5-Day Forecast */}
+            {/* 5-Day Forecast with Expandable 24h View */}
             <DailyForecast forecast={forecast} unit={unit} />
+
+            {/* Astronomical Info */}
+            <AstronomicalInfo weather={weather} />
           </div>
         )}
 
