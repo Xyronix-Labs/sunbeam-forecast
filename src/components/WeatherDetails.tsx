@@ -13,22 +13,20 @@ interface DetailCardProps {
   label: string;
   value: string;
   subValue?: string;
-  delay?: number;
 }
 
-const DetailCard = ({ icon, label, value, subValue, delay = 0 }: DetailCardProps) => (
-  <div 
-    className="glass-card-orange rounded-2xl p-5 flex flex-col gap-3 hover:scale-105 transition-transform duration-300 animate-fade-in"
-    style={{ animationDelay: `${delay}ms` }}
-  >
-    <div className="flex items-center gap-3">
-      <div className="p-2 rounded-xl bg-primary/20 text-primary">
+const DetailCard = ({ icon, label, value, subValue }: DetailCardProps) => (
+  <div className="glass-card-orange rounded-2xl p-5 flex flex-col h-full hover:scale-[1.02] transition-transform duration-300">
+    <div className="flex items-center gap-3 mb-auto">
+      <div className="p-2.5 rounded-xl bg-primary/20 text-primary shrink-0">
         {icon}
       </div>
-      <span className="text-muted-foreground text-sm">{label}</span>
+      <span className="text-muted-foreground text-sm font-medium">{label}</span>
     </div>
-    <span className="text-2xl font-semibold gradient-text">{value}</span>
-    {subValue && <span className="text-sm text-muted-foreground">{subValue}</span>}
+    <div className="mt-4">
+      <span className="text-2xl font-semibold gradient-text block">{value}</span>
+      {subValue && <span className="text-xs text-muted-foreground mt-1 block">{subValue}</span>}
+    </div>
   </div>
 );
 
@@ -55,71 +53,33 @@ export const WeatherDetails = ({ weather, unit }: WeatherDetailsProps) => {
   const dewPoint = getDewPoint(weather.main.temp, weather.main.humidity);
   const dayLength = getDayLength(weather.sys.sunrise, weather.sys.sunset);
 
+  const details = [
+    { icon: <Wind size={20} />, label: "Wind Speed", value: windSpeed, subValue: windGust },
+    { icon: <Compass size={20} />, label: "Wind Direction", value: windDir, subValue: `${weather.wind.deg}°` },
+    { icon: <Droplets size={20} />, label: "Humidity", value: `${weather.main.humidity}%` },
+    { icon: <Thermometer size={20} />, label: "Dew Point", value: `${unit === 'celsius' ? dewPoint : Math.round((dewPoint * 9/5) + 32)}°` },
+    { icon: <Gauge size={20} />, label: "Pressure", value: `${weather.main.pressure} hPa`, subValue: weather.main.sea_level ? `Sea level: ${weather.main.sea_level} hPa` : undefined },
+    { icon: <Eye size={20} />, label: "Visibility", value: visibility },
+    { icon: <Cloud size={20} />, label: "Cloud Cover", value: `${weather.clouds.all}%` },
+    { icon: <Timer size={20} />, label: "Day Length", value: dayLength },
+    { icon: <Sunrise size={20} />, label: "Sunrise", value: formatTime(weather.sys.sunrise) },
+    { icon: <Sunset size={20} />, label: "Sunset", value: formatTime(weather.sys.sunset) },
+  ];
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <DetailCard
-        icon={<Wind size={20} />}
-        label="Wind Speed"
-        value={windSpeed}
-        subValue={windGust}
-        delay={0}
-      />
-      <DetailCard
-        icon={<Compass size={20} />}
-        label="Wind Direction"
-        value={windDir}
-        subValue={`${weather.wind.deg}°`}
-        delay={50}
-      />
-      <DetailCard
-        icon={<Droplets size={20} />}
-        label="Humidity"
-        value={`${weather.main.humidity}%`}
-        delay={100}
-      />
-      <DetailCard
-        icon={<Thermometer size={20} />}
-        label="Dew Point"
-        value={`${unit === 'celsius' ? dewPoint : Math.round((dewPoint * 9/5) + 32)}°`}
-        delay={150}
-      />
-      <DetailCard
-        icon={<Gauge size={20} />}
-        label="Pressure"
-        value={`${weather.main.pressure} hPa`}
-        subValue={weather.main.sea_level ? `Sea: ${weather.main.sea_level} hPa` : undefined}
-        delay={200}
-      />
-      <DetailCard
-        icon={<Eye size={20} />}
-        label="Visibility"
-        value={visibility}
-        delay={250}
-      />
-      <DetailCard
-        icon={<Cloud size={20} />}
-        label="Cloud Cover"
-        value={`${weather.clouds.all}%`}
-        delay={300}
-      />
-      <DetailCard
-        icon={<Timer size={20} />}
-        label="Day Length"
-        value={dayLength}
-        delay={350}
-      />
-      <DetailCard
-        icon={<Sunrise size={20} />}
-        label="Sunrise"
-        value={formatTime(weather.sys.sunrise)}
-        delay={400}
-      />
-      <DetailCard
-        icon={<Sunset size={20} />}
-        label="Sunset"
-        value={formatTime(weather.sys.sunset)}
-        delay={450}
-      />
+    <div className="glass-card-orange rounded-3xl p-6 animate-fade-in orange-glow">
+      <h3 className="text-xl font-semibold mb-6 gradient-text">Weather Details</h3>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+        {details.map((detail, index) => (
+          <div 
+            key={detail.label}
+            className="animate-fade-in"
+            style={{ animationDelay: `${index * 50}ms` }}
+          >
+            <DetailCard {...detail} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
