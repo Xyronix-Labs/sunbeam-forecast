@@ -14,7 +14,44 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Outfit', 'sans-serif'],
+        display: ['Space Grotesk', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+      colors: {
+        cyan: {
+          DEFAULT: '#00D4FF',
+          50: '#e0faff',
+          100: '#b3f3ff',
+          200: '#80ecff',
+          300: '#4de5ff',
+          400: '#26deff',
+          500: '#00D4FF',
+          600: '#00a8cc',
+          700: '#007d99',
+          800: '#005266',
+          900: '#002733',
+        },
+        violet: {
+          DEFAULT: '#7B5EA7',
+          400: '#a37fd1',
+          500: '#7B5EA7',
+          600: '#5c4580',
+        },
+        coral: {
+          DEFAULT: '#FF6B35',
+          400: '#ff9069',
+          500: '#FF6B35',
+          600: '#cc5529',
+        },
+        midnight: {
+          DEFAULT: '#0a0f1c',
+          100: '#0e1322',
+          200: '#161b2b',
+          300: '#1a1f2f',
+          400: '#25293a',
+          500: '#2f3445',
+        },
       },
       colors: {
         border: "hsl(var(--border))",

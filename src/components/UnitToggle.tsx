@@ -7,26 +7,26 @@ interface UnitToggleProps {
 
 export const UnitToggle = ({ unit, onToggle }: UnitToggleProps) => {
   return (
-    <div className="flex items-center glass-card-orange rounded-full p-1">
+    <div className="unit-toggle flex items-center">
       <button
+        id="celsius-toggle"
         onClick={() => onToggle('celsius')}
-        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-          unit === 'celsius'
-            ? 'bg-gradient-to-r from-primary to-accent text-primary-foreground'
-            : 'text-muted-foreground hover:text-foreground'
+        className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+          unit === 'celsius' ? 'unit-toggle-active' : 'unit-toggle-inactive'
         }`}
+        style={{ fontFamily: 'Outfit, sans-serif' }}
       >
-        °C, m/s
+        °C
       </button>
       <button
+        id="fahrenheit-toggle"
         onClick={() => onToggle('fahrenheit')}
-        className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-          unit === 'fahrenheit'
-            ? 'bg-gradient-to-r from-primary to-accent text-primary-foreground'
-            : 'text-muted-foreground hover:text-foreground'
+        className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+          unit === 'fahrenheit' ? 'unit-toggle-active' : 'unit-toggle-inactive'
         }`}
+        style={{ fontFamily: 'Outfit, sans-serif' }}
       >
-        °F, mph
+        °F
       </button>
     </div>
   );

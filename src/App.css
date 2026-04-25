@@ -1,42 +1,25 @@
+/* App-level component styles - Aurora theme overrides */
+
+/* Ensure all text inherits the Outfit font by default */
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  background-color: #0a0f1c;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Ensure glass cards work properly */
+.glass-card, .glass-card-glow {
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Remove any default button styles within the app */
+button:focus-visible {
+  outline: 2px solid rgba(0, 212, 255, 0.5);
+  outline-offset: 2px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Weather icon drops shadow so it lifts off the dark background */
+img[alt*="weather"], img[alt*="Weather"] {
+  filter: drop-shadow(0 4px 24px rgba(0, 212, 255, 0.2));
 }
