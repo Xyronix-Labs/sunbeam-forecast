@@ -11,6 +11,7 @@ import { LoadingSkeleton } from '@/components/LoadingSkeleton';
 import { EmptyState } from '@/components/EmptyState';
 import { ErrorMessage } from '@/components/ErrorMessage';
 import { TemperatureUnit } from '@/types/weather';
+import logo from '@/assets/logo.png';
 
 // Aurora star particles
 const StarField = () => {
@@ -78,21 +79,16 @@ const Index = () => {
         {/* ── Header ── */}
         <header className="flex flex-col sm:flex-row items-center justify-between gap-4 animate-fade-in">
           <div className="flex items-center gap-3">
-            {/* Lightning bolt logo */}
-            <div className="relative">
-              <div
-                className="w-11 h-11 rounded-2xl flex items-center justify-center cyan-glow"
-                style={{ background: 'linear-gradient(135deg, #00D4FF 0%, #7B5EA7 100%)' }}
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#0a0f1c" strokeWidth="0" />
-                </svg>
+            {/* Custom Logo from Assets */}
+            {/* <div className="relative">
+              <div className="w-11 h-11 rounded-2xl overflow-hidden cyan-glow border border-cyan/20">
+                <img src={logo} alt="SunBeam Logo" className="w-full h-full object-cover" />
               </div>
               <div
-                className="absolute inset-0 rounded-2xl opacity-40 blur-md"
+                className="absolute inset-0 rounded-2xl opacity-30 blur-md -z-10"
                 style={{ background: 'linear-gradient(135deg, #00D4FF 0%, #7B5EA7 100%)' }}
               />
-            </div>
+            </div> */}
             <div>
               <h1 className="text-2xl font-bold gradient-text font-display tracking-tight leading-none">
                 SunBeam
